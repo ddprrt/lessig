@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "less": "~1.7.4"
+    "less": "~1.7.4",
+    "codemirror": "~4.4.0"
   }
 }

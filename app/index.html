@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lessig</title>
+	<link rel="stylesheet" href="../bower_components/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="../bower_components/codemirror/theme/monokai.css">
+	<style>
+	#less {
+		width: 50%;
+		height: 500px;
+		border: 1px solid black;
+	}
+	</style>
+</head>
+<body>
+	<div id="less"></div>
+	<script src="../bower_components/less/dist/less-1.7.4.js"></script>
+	<script src="../bower_components/codemirror/lib/codemirror.js"></script>
+	<script src="../bower_components/codemirror/mode/css/css.js"></script>
+
+	<script>
+	var code = CodeMirror(document.getElementById('less'), {
+		mode: "text/x-less",
+		theme: "monokai"
+	})
+	</script>
+</body>
+</html>
