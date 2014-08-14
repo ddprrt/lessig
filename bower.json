@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "less": "~1.7.4",
-    "codemirror": "~4.4.0"
+    "codemirror": "~4.4.0",
+    "normalize-css": "~3.0.1"
   }
 }

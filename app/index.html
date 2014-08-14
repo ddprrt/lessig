@@ -3,45 +3,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Lessig</title>
-	<link rel="stylesheet" href="../bower_components/codemirror/lib/codemirror.css">
-	<link rel="stylesheet" href="../bower_components/codemirror/theme/monokai.css">
-	<link rel="stylesheet" href="../dist/styles/main.css">
-	<style>
-	.code {
-		width: 50%;
-	}
-	</style>
+	<link rel="stylesheet" href="bower_components/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="bower_components/codemirror/theme/monokai.css">
+	<link rel="stylesheet" href="styles/main.css">
+	<script src="//use.edgefonts.net/source-code-pro:n4:all.js"></script>
 </head>
 <body>
 	<header class="header">
 		lessig
 	</header>
-	<div class="code" id="less"></div>
-
-	<div class="code" id="css"></div>
-	<script src="../bower_components/less/dist/less-1.7.4.js"></script>
-	<script src="../bower_components/codemirror/lib/codemirror.js"></script>
-	<script src="../bower_components/codemirror/mode/css/css.js"></script>
-
-	<script>
-	var lss = CodeMirror(document.getElementById('less'), {
-		mode: "text/x-less",
-		theme: "monokai"
-	});
-
-
-	var css = CodeMirror(document.getElementById('css'), {
-		mode: "text/css",
-		theme: "monokai"
-	});
-
-	var parser = new less.Parser();
-
-	lss.on('change', function() {
-		parser.parse(lss.doc.getValue(), function (e, tree) {
-  			css.setValue(tree.toCSS());
-		});
-	});
-	</script>
+	<div class="code-wrapper">
+		<div class="code" id="less"></div>
+		<div class="code" id="css"></div>	
+	</div>
+	
+	<script src="bower_components/less/dist/less-1.7.4.js"></script>
+	<script src="bower_components/codemirror/lib/codemirror.js"></script>
+	<script src="bower_components/codemirror/mode/css/css.js"></script>
+	<script src="scripts/main.js"></script>
 </body>
 </html>

@@ -1,5 +1,35 @@
+@import (inline) "../bower_components/normalize-css/normalize.css";
+
 @bgcolor: 	#1d365d;
 @fontcolor:	#fff;
+
+.code-wrapper {
+	margin-top: 30px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+}
+
+.code {
+	box-sizing: border-box;
+	position: absolute;
+	left: 0; top: 0; bottom: 0; right: 50%;
+
+	> .CodeMirror {
+		padding: 15px;
+		height: auto;
+		position: absolute;
+		left: 0; right: 0; bottom: 0; top: 0;
+	}
+
+	+ .code {
+		border-left: 1px solid @fontcolor;
+		right: 0;
+		left: 50%;
+	}
+}
 
 .wrapper {
 	max-width: 1200px;
@@ -13,3 +43,8 @@
 	color: #fff;
 }
 
+.CodeMirror {
+	pre {
+		font-family: 'source-code-pro', monospace;
+	}
+}
