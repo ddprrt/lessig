@@ -25,4 +25,4 @@ gulp.task('connect', function() {
 
 gulp.task('default', ['less']);
 
-gulp.task('dev', ['connect', 'watch']);
+gulp.task('dev', ['less', 'connect', 'watch']);

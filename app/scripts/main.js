@@ -12,6 +12,7 @@ var css = CodeMirror(document.getElementById('css'), {
 	theme: "monokai",
 	tabSize: 2,
 	indentWithTabs: false,
+	readOnly: true
 	//lineNumbers: true
 });
 
