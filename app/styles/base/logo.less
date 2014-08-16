@@ -1,12 +1,13 @@
 .logo-bg {
 	position: relative;
 	height: 60px;
+	font-weight: bold;
 }
 
 .logo-bg:after {
 	content: '';
 	position: absolute;
-	background-image: linear-gradient(to bottom, #1d355d, #000000);
+	background-image: linear-gradient(to bottom, lighten(@bgcolor, 10%), darken(@bgcolor, 10%));
 	line-height: 1;
 	width: 103px;
 	height: 39px;
@@ -24,10 +25,12 @@
 	margin: 0;
 	color: white;
 	display: inline-block;
+
+	.no-link-decoration();
 	
 	&:before {
 		content: '{';
-		letter-spacing: -3px;
+		letter-spacing: -5px;
 	}
 	
 	&:after {
