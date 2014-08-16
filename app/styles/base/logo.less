@@ -1,0 +1,36 @@
+.logo-bg {
+	position: relative;
+	height: 60px;
+}
+
+.logo-bg:after {
+	content: '';
+	position: absolute;
+	background-image: linear-gradient(to bottom, #1d355d, #000000);
+	line-height: 1;
+	width: 103px;
+	height: 39px;
+	left: 5px;
+	top: 12px;
+	z-index: 0;
+}
+
+.logo {
+	position: absolute;
+	z-index: 1;
+	font-family: 'pt-sans';
+	font-size: 40px;
+	letter-spacing: -1px;
+	margin: 0;
+	color: white;
+	display: inline-block;
+	
+	&:before {
+		content: '{';
+		letter-spacing: -3px;
+	}
+	
+	&:after {
+		content: '}';
+	}
+}
