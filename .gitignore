@@ -2,3 +2,4 @@ bower_components
 node_modules
 dist
 keys.js
+npm-debug.log

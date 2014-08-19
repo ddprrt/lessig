@@ -4,15 +4,10 @@ var User = (function() {
 	// Got an auth
 	var uri = window.location.href;
 	
-	if(uri.indexOf('?code=')) {
-		window.localStorage.setItem('lessig_token', uri.substr(uri.indexOf('?code=') + 6));
-		window.close();
-	}
-
 	var gist = {
 		auth: function() {
 			window.open('https://github.com/login/oauth/authorize'
-				+ '?client_id=' + clientID + '&scope=gist,user&redirect_uri=' + window.location.href);
+				+ '?client_id=' + clientID + '&scope=gist,user');
 		},
 
 		request: function(o) {
