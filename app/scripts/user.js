@@ -1,9 +1,6 @@
 var User = (function() {
 	var clientID = '260338b1bcaea7c0fcef';
 
-	// Got an auth
-	var uri = window.location.href;
-	
 	var gist = {
 		auth: function() {
 			window.open('https://github.com/login/oauth/authorize'
@@ -51,21 +48,60 @@ var User = (function() {
 		getUser: function(callback) {
 			gist.request({
 				path: 'user',
-				callback: function(data) {
-					console.log(data)
+				callback: callback
+			});
+		},
+		getGists: function(callback) {
+			gist.request({
+				path: 'gists',
+				callback: callback
+			})
+		},
+		getGist: function(gistid, callback) {
+			gist.request({
+				path: 'gists/' + gistid,
+				callback: callback
+			})
+		}
+	};
+
+	var login = function() {
+		console.log("Logged in");
+	};
+
+	var checkLogin = function() {
+		if(window.localStorage.getItem('lessig_token')) {
+			login();
+		}
+	};
+
+	var checkData = function() {
+		if(window.location.href.indexOf('/gist/') > 0) {
+			var parts = window.location.href.split('/');
+			var gistId = parts[parts.length - 1];
+
+			gist.getGist(gistId, function(data) {
+				if(data && data.files && data.files["lessig.less"]) {
+					App.setLess(data.files["lessig.less"].content);
+				} else {
+					App.setLess("Not a valid lessig gist");
 				}
 			});
 		}
-	}
+	};
 
-	window.onstorage = function() {
-		if(window.localStorage.getItem('lessig_token')) {
-			alert("LOGGED IN!");
-		}
-	}
+	// Constructor
+	(function() {
+		window.addEventListener('storage', checkLogin, true);
+		checkLogin();
+		checkData();
+	})();
 
+	
 	return {
-		auth: gist.auth,
-		user: gist.getUser
+		auth: 	gist.auth,
+		user: 	gist.getUser,
+		gists: 	gist.getGists,
+		gist: 	gist.getGist
 	}
 })();

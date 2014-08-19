@@ -30,4 +30,10 @@ var App = (function() {
 		});
 	});
 
+	return {
+		setLess: function(code) {
+			lss.setValue(code);
+		}
+	}
+
 })();
