@@ -22,7 +22,11 @@ var App = (function() {
 
 	lss.on('change', function() {
 		parser.parse(lss.doc.getValue(), function (e, tree) {
+			try {
 				css.setValue(tree.toCSS());
+			} catch(e) {
+				css.setValue(e.message);
+			}
 		});
 	});
 
