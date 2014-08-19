@@ -3,7 +3,9 @@ var gulp 	= require('gulp'),
   concat 	= require('gulp-concat'),
   uglify 	= require('gulp-uglify'),
   connect 	= require('gulp-connect'),
-  usemin 	= require('gulp-usemin');
+  cssmin	= require('gulp-cssmin'),
+  gulpif 	= require('gulp-if'),
+  useref 	= require('gulp-useref');
 
 gulp.task('less', function() {
 	return gulp.src('app/styles/main.less')
@@ -23,6 +25,30 @@ gulp.task('connect', function() {
 	});
 });
 
+gulp.task('useref', function() {
+	var assets = useref.assets();
+
+	return gulp.src('app/*.html')
+		.pipe(assets)
+		.pipe(assets.restore())
+		.pipe(useref())
+		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('styles', ['less', 'useref'], function() {
+	return gulp.src('app/styles/*.css')
+		.pipe(cssmin())
+		.pipe(gulp.dest('dist/styles'));
+});
+
+gulp.task('scripts', ['useref'], function() {
+	return gulp.src('dist/scripts/*.js')
+		.pipe(uglify())
+		.pipe(gulp.dest('dist/scripts'));
+});
+
 gulp.task('default', ['less']);
 
 gulp.task('dev', ['less', 'connect', 'watch']);
+
+gulp.task('build', ['styles', 'scripts']);

@@ -3,9 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Lessig - Less instant generator. Try Less online!</title>
+	<!-- build:css /styles/codemirror.css -->
 	<link rel="stylesheet" href="bower_components/codemirror/lib/codemirror.css">
 	<link rel="stylesheet" href="bower_components/codemirror/theme/monokai.css">
-	<link rel="stylesheet" href="styles/main.css">
+	<!-- endbuild -->
+	<link rel="stylesheet" href="/styles/main.css">
 	<script src="//use.edgefonts.net/source-code-pro:n4;pt-sans:n4.js"></script>
 </head>
 <body>
@@ -17,12 +19,16 @@
 		<div class="code" id="css"></div>	
 	</div>
 	
+	<!-- build:js /scripts/lib.js -->
 	<script src="bower_components/less/dist/less-1.7.4.js"></script>
 	<script src="bower_components/codemirror/lib/codemirror.js"></script>
 	<script src="bower_components/codemirror-emmet/dist/emmet.js"></script>
 	<script src="bower_components/codemirror/mode/css/css.js"></script>
+	<!-- endbuild -->
+	<!-- build:js /scripts/app.js -->
 	<script src="scripts/main.js"></script>
 	<script src="scripts/util.js"></script>
 	<script src="scripts/user.js"></script>
+	<!-- endbuild -->
 </body>
 </html>
