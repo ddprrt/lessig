@@ -36,7 +36,7 @@ gulp.task('useref', function() {
 });
 
 gulp.task('styles', ['less', 'useref'], function() {
-	return gulp.src('app/styles/*.css')
+	return gulp.src('dist/styles/*.css')
 		.pipe(cssmin())
 		.pipe(gulp.dest('dist/styles'));
 });
