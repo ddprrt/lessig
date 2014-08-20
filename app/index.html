@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="lessig">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Lessig - Less instant generator. Try Less online!</title>
@@ -13,9 +13,10 @@
 <body>
 	<header class="header">
 		<div class="logo-bg"><a href="/" class="logo">lessig</a></div>
-		<div class="button-bar" ng-controller="user">
-			<button ng-click="logout()" ng-show="loggedin" class="button">Log out</button>
-			<button ng-click="login()" ng-hide="loggedin" class="button">Log in with GitHub</button>
+		<div class="button-bar">
+			<button data-bind="visible: loggedin,  click: save" class="button">Save</button>
+			<button data-bind="visible: loggedin,  click: logout" class="button">Log out</button>
+			<button data-bind="visible: loggedout, click: login" class="button">Log in with GitHub</button>
 		</div>
 	</header>
 	<div class="code-wrapper">
@@ -31,10 +32,10 @@
 	<script src="bower_components/codemirror/lib/codemirror.js"></script>
 	<script src="bower_components/codemirror-emmet/dist/emmet.js"></script>
 	<script src="bower_components/codemirror/mode/css/css.js"></script>
-	<script src="bower_components/angularjs/angular.js"></script>
+	<script src="bower_components/knockoutjs/dist/knockout.js"></script>
 	<!-- endbuild -->
 	<!-- build:js /scripts/app.js -->
-	<script src="scripts/app.js"></script>
+	<script src="scripts/storage.js"></script>
 	<script src="scripts/main.js"></script>
 	<script src="scripts/util.js"></script>
 	<script src="scripts/user.js"></script>
