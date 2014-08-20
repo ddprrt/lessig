@@ -1,0 +1,33 @@
+.code-wrapper {
+	margin-top: 60px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+}
+
+.code {
+	box-sizing: border-box;
+	position: absolute;
+	left: 0; top: 0; bottom: 0; right: 50%;
+
+	> .CodeMirror {
+		padding: 15px;
+		height: auto;
+		position: absolute;
+		left: 0; right: 0; bottom: 0; top: 0;
+	}
+
+	+ .code {
+		border-left: 1px solid @fontcolor;
+		right: 0;
+		left: 50%;
+	}
+}
+
+.CodeMirror {
+	pre {
+		font-family: 'source-code-pro', monospace;
+	}
+}

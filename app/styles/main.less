@@ -2,52 +2,7 @@
 @import "base/variables";
 @import "base/global";
 
-.code-wrapper {
-	margin-top: 60px;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	position: absolute;
-}
-
-.code {
-	box-sizing: border-box;
-	position: absolute;
-	left: 0; top: 0; bottom: 0; right: 50%;
-
-	> .CodeMirror {
-		padding: 15px;
-		height: auto;
-		position: absolute;
-		left: 0; right: 0; bottom: 0; top: 0;
-	}
-
-	+ .code {
-		border-left: 1px solid @fontcolor;
-		right: 0;
-		left: 50%;
-	}
-}
-
-.wrapper {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 20px;
-	position: relative;
-}
-
-.header {
-	background-color: @bgcolor;
-	color: #fff;
-	height: 60px;
-	padding: 0 20px
-}
-
-.CodeMirror {
-	pre {
-		font-family: 'source-code-pro', monospace;
-	}
-}
-
-@import "base/logo";
+@import "objects/layout";
+@import "objects/header";
+@import "objects/logo";
+@import "objects/code";

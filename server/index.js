@@ -31,8 +31,8 @@ server.get('/auth', function(req, res) {
 				var parts = result.split('&');
 				var token = parts[0].split('=')[1];
 				var code = "<!doctype html><body><script>" + 
-					"window.localStorage.setItem('lessig_token', '" + token + "');" + 
-					"window.close()" +
+					"window.localStorage.setItem('lessig_token', '" + token + "');\n" + 
+					"window.location.href = window.location.href.replace('/auth','/');" +
 					"</script></body>";
 				res.send(code);
 			} else {

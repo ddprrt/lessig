@@ -3,8 +3,7 @@ var User = (function() {
 
 	var gist = {
 		auth: function() {
-			window.open('https://github.com/login/oauth/authorize'
-				+ '?client_id=' + clientID + '&scope=gist,user');
+			window.location.href = 'https://github.com/login/oauth/authorize' + '?client_id=' + clientID + '&scope=gist,user';
 		},
 
 		request: function(o) {
