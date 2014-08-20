@@ -104,3 +104,16 @@ var User = (function() {
 		gist: 	gist.getGist
 	}
 })();
+
+app.controller('user', function($scope) {
+	$scope.loggedin = window.localStorage.getItem('lessig_token');
+
+	$scope.login = function() {
+		return User.auth();
+	};
+
+	$scope.logout = function() {
+		window.localStorage.removeItem('lessig_token');
+		$scope.loggedin = false;
+	}
+});

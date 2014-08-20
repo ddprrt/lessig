@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="lessig">
 <head>
 	<meta charset="UTF-8">
 	<title>Lessig - Less instant generator. Try Less online!</title>
@@ -13,11 +13,18 @@
 <body>
 	<header class="header">
 		<div class="logo-bg"><a href="/" class="logo">lessig</a></div>
+		<div class="button-bar" ng-controller="user">
+			<button ng-click="logout()" ng-show="loggedin" class="button">Log out</button>
+			<button ng-click="login()" ng-hide="loggedin" class="button">Log in with GitHub</button>
+		</div>
 	</header>
 	<div class="code-wrapper">
 		<div class="code" id="less"></div>
 		<div class="code" id="css"></div>	
 	</div>
+	<footer class="footer">
+		&copy; ddprrt
+	</footer>
 	
 	<!-- build:js /scripts/lib.js -->
 	<script src="bower_components/less/dist/less-1.7.4.js"></script>
