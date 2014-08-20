@@ -9,6 +9,7 @@ var App = (function() {
 	});
 
 
+
 	var css = CodeMirror(document.getElementById('css'), {
 		mode: "text/css",
 		theme: "monokai",
@@ -20,19 +21,33 @@ var App = (function() {
 
 	var parser = new less.Parser();
 
-	lss.on('change', function() {
+	var parse = function() {
 		parser.parse(lss.doc.getValue(), function (e, tree) {
 			try {
 				css.setValue(tree.toCSS());
-			} catch(e) {
-				css.setValue(e.message);
+			} catch(err) {
+				css.setValue(err.message);
 			}
 		});
+	}
+
+	lss.on('change', function() {
+		parse();
+		Storage.set('less', lss.getValue());
 	});
+
+
+	if(Storage.get('less')) {
+		lss.setValue(Storage.get('less'));
+		parse();
+	}
 
 	return {
 		setLess: function(code) {
 			lss.setValue(code);
+		},
+		getLess: function() {
+			return lss.getValue();
 		}
 	}
 

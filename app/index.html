@@ -13,19 +13,29 @@
 <body>
 	<header class="header">
 		<div class="logo-bg"><a href="/" class="logo">lessig</a></div>
+		<div class="button-bar">
+			<button data-bind="visible: loggedin,  click: save" class="button">Save</button>
+			<button data-bind="visible: loggedin,  click: logout" class="button">Log out</button>
+			<button data-bind="visible: loggedout, click: login" class="button">Log in with GitHub</button>
+		</div>
 	</header>
 	<div class="code-wrapper">
 		<div class="code" id="less"></div>
 		<div class="code" id="css"></div>	
 	</div>
+	<footer class="footer">
+		&copy; ddprrt
+	</footer>
 	
 	<!-- build:js /scripts/lib.js -->
 	<script src="bower_components/less/dist/less-1.7.4.js"></script>
 	<script src="bower_components/codemirror/lib/codemirror.js"></script>
 	<script src="bower_components/codemirror-emmet/dist/emmet.js"></script>
 	<script src="bower_components/codemirror/mode/css/css.js"></script>
+	<script src="bower_components/knockoutjs/dist/knockout.js"></script>
 	<!-- endbuild -->
 	<!-- build:js /scripts/app.js -->
+	<script src="scripts/storage.js"></script>
 	<script src="scripts/main.js"></script>
 	<script src="scripts/util.js"></script>
 	<script src="scripts/user.js"></script>

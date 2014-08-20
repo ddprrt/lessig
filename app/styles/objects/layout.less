@@ -1,0 +1,20 @@
+.wrapper {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+	position: relative;
+}
+
+.header {
+	background-color: @bgcolor;
+	color: #fff;
+	height: 60px;
+	padding: 0 20px
+}
+
+.footer:extend(.header) {
+	height: 20px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}

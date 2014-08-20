@@ -3,8 +3,7 @@ var User = (function() {
 
 	var gist = {
 		auth: function() {
-			window.open('https://github.com/login/oauth/authorize'
-				+ '?client_id=' + clientID + '&scope=gist,user');
+			window.location.href = 'https://github.com/login/oauth/authorize' + '?client_id=' + clientID + '&scope=gist,user';
 		},
 
 		request: function(o) {
@@ -62,17 +61,36 @@ var User = (function() {
 				path: 'gists/' + gistid,
 				callback: callback
 			})
+		},
+		saveGist: function(data, callback) {
+			gist.request({
+				path: 'gists',
+				method: 'POST',
+				data: data,
+				callback: callback
+			})
 		}
 	};
 
-	var login = function() {
-		console.log("Logged in");
-	};
+	var save = function() {
+		var data = {
+			"description": "A Lessig File",
+			"public": true,
+			"files": {
+				"lessig.less": {
+					"content": App.getLess()
+				}
+			}
+		};
+		gist.saveGist(data, function(res) {
+			if(res && res.id && window.history) {
+				window.history.pushState(res, "gist " + res.id, window.location.href.split('?')[0] + 'gist/' + res.id);
+			}
+		});
+	}
 
 	var checkLogin = function() {
-		if(window.localStorage.getItem('lessig_token')) {
-			login();
-		}
+		return window.localStorage.getItem('lessig_token') != null;
 	};
 
 	var checkData = function() {
@@ -99,9 +117,22 @@ var User = (function() {
 
 	
 	return {
-		auth: 	gist.auth,
-		user: 	gist.getUser,
-		gists: 	gist.getGists,
-		gist: 	gist.getGist
+		auth: 		gist.auth,
+		user: 		gist.getUser,
+		gists: 		gist.getGists,
+		gist: 		gist.getGist,
+		save: 		save,
+		loggedin: 	ko.observable(checkLogin()),
+		loggedout: 	ko.observable(!checkLogin()),
+		logout: function() {
+			window.localStorage.removeItem('lessig_token');
+			this.loggedin(checkLogin());
+			this.loggedout(!checkLogin());
+		},
+		login: function() {
+			gist.auth();	
+		}
 	}
 })();
+
+ko.applyBindings(User);

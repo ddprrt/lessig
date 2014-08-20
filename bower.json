@@ -18,6 +18,7 @@
     "less": "~1.7.4",
     "codemirror": "~4.4.0",
     "normalize-css": "~3.0.1",
-    "codemirror-emmet": "~1.1.0"
+    "codemirror-emmet": "~1.1.0",
+    "knockoutjs": "~3.2.0"
   }
 }

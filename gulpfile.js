@@ -4,12 +4,13 @@ var gulp 	= require('gulp'),
   uglify 	= require('gulp-uglify'),
   connect 	= require('gulp-connect'),
   cssmin	= require('gulp-cssmin'),
-  gulpif 	= require('gulp-if'),
+  prefix	= require('gulp-autoprefixer'),
   useref 	= require('gulp-useref');
 
 gulp.task('less', function() {
 	return gulp.src('app/styles/main.less')
 		.pipe(less())
+		.pipe(prefix())
 		.pipe(connect.reload())
 		.pipe(gulp.dest('dist/styles'));
 });
@@ -44,7 +45,7 @@ gulp.task('styles', ['less', 'useref'], function() {
 
 gulp.task('scripts', ['useref'], function() {
 	return gulp.src('dist/scripts/*.js')
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(gulp.dest('dist/scripts'));
 });
 
