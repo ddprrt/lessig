@@ -69,8 +69,36 @@ var User = (function() {
 				data: data,
 				callback: callback
 			})
+		},
+		updateGist: function(data, callback, id) {
+			gist.request({
+				path: 'gists/' + id,
+				method: 'PATCH',
+				data: data,
+				callback: callback
+			})
 		}
 	};
+
+	var update = function(data, id) {
+		gist.updateGist(data, postSave, id);
+	}
+
+	var store = function(data) {
+		gist.saveGist(data, postSave);
+	}
+
+	var postSave = function(res) {
+			if(res && res.id) {
+				if(window.history) {
+					window.history.pushState(res, "gist " + res.id, '/gist/' + res.id);
+				} else {
+					window.location.hash = '/gist/' + res.id;
+				}
+				Storage.set('current', res);
+				App.dirty(false);
+			} 
+		}
 
 	var save = function() {
 		var data = {
@@ -82,11 +110,13 @@ var User = (function() {
 				}
 			}
 		};
-		gist.saveGist(data, function(res) {
-			if(res && res.id && window.history) {
-				window.history.pushState(res, "gist " + res.id, window.location.href.split('?')[0] + 'gist/' + res.id);
-			}
-		});
+		var user = Storage.get('user');
+		var current = Storage.get('current');
+		if(!!current && !!current.owner && current.owner.login == user.login) {
+			update(data, current.id)
+		} else {
+			store(data);
+		}
 	}
 
 	var checkLogin = function() {
@@ -101,6 +131,7 @@ var User = (function() {
 			gist.getGist(gistId, function(data) {
 				if(data && data.files && data.files["lessig.less"]) {
 					App.setLess(data.files["lessig.less"].content);
+					App.dirty(false);
 				} else {
 					App.setLess("Not a valid lessig gist");
 				}
@@ -111,7 +142,11 @@ var User = (function() {
 	// Constructor
 	(function() {
 		window.addEventListener('storage', checkLogin, true);
-		checkLogin();
+		if(checkLogin()) {
+			gist.getUser(function(data){
+				Storage.set('user',data);
+			})
+		}
 		checkData();
 	})();
 
@@ -122,12 +157,11 @@ var User = (function() {
 		gists: 		gist.getGists,
 		gist: 		gist.getGist,
 		save: 		save,
+		dirty: 		App.dirty,
 		loggedin: 	ko.observable(checkLogin()),
-		loggedout: 	ko.observable(!checkLogin()),
 		logout: function() {
 			window.localStorage.removeItem('lessig_token');
 			this.loggedin(checkLogin());
-			this.loggedout(!checkLogin());
 		},
 		login: function() {
 			gist.auth();	

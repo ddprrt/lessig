@@ -14,9 +14,9 @@
 	<header class="header">
 		<div class="logo-bg"><a href="/" class="logo">lessig</a></div>
 		<div class="button-bar">
-			<button data-bind="visible: loggedin,  click: save" class="button">Save</button>
-			<button data-bind="visible: loggedin,  click: logout" class="button">Log out</button>
-			<button data-bind="visible: loggedout, click: login" class="button">Log in with GitHub</button>
+			<button data-bind="enable: (dirty() && loggedin()), visible: loggedin,  click: save" class="button">Save</button>
+			<button data-bind="enable: loggedin, visible: loggedin,  click: logout" class="button">Log out</button>
+			<button data-bind="visible: !loggedin(), click: login" class="button">Log in with GitHub</button>
 		</div>
 	</header>
 	<div class="code-wrapper">

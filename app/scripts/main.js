@@ -31,8 +31,11 @@ var App = (function() {
 		});
 	}
 
+	var dirty = ko.observable(false);
+
 	lss.on('change', function() {
 		parse();
+		dirty(true);
 		Storage.set('less', lss.getValue());
 	});
 
@@ -48,7 +51,8 @@ var App = (function() {
 		},
 		getLess: function() {
 			return lss.getValue();
-		}
+		},
+		dirty: dirty
 	}
 
 })();

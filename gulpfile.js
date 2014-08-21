@@ -45,7 +45,7 @@ gulp.task('styles', ['less', 'useref'], function() {
 
 gulp.task('scripts', ['useref'], function() {
 	return gulp.src('dist/scripts/*.js')
-		//.pipe(uglify())
+		.pipe(uglify())
 		.pipe(gulp.dest('dist/scripts'));
 });
 
