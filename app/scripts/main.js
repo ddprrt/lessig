@@ -52,6 +52,10 @@ var App = (function() {
 		getLess: function() {
 			return lss.getValue();
 		},
+		clear: function() {
+			lss.setValue('');
+			dirty(false);
+		},
 		dirty: dirty
 	}
 

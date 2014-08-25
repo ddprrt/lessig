@@ -158,6 +158,7 @@ var User = (function() {
 		gist: 		gist.getGist,
 		save: 		save,
 		dirty: 		App.dirty,
+		clear: 		App.clear,
 		loggedin: 	ko.observable(checkLogin()),
 		logout: function() {
 			window.localStorage.removeItem('lessig_token');
