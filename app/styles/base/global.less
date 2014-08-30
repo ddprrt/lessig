@@ -1,10 +1,24 @@
 .no-link-decoration() {
 	text-decoration: none;
+	transition: all 0.3s ease;
 	
 	&:hover,
 	&:active,
 	&:visited,
 	&:focus {
 		text-decoration: none;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	.no-link-decoration();
+	color: darken(#fff, 30);
+
+	&:hover {
+		color: darken(#fff, 10);
 	}
 }
