@@ -19,16 +19,13 @@ var App = (function() {
 		//lineNumbers: true
 	});
 
-	var parser = new less.Parser();
-
 	var parse = function() {
-		parser.parse(lss.doc.getValue(), function (e, tree) {
-			try {
-				css.setValue(tree.toCSS());
-			} catch(err) {
+		less.render(lss.doc.getValue())
+			.then(function(output) {
+				css.setValue(output.css)	
+			}, function(err) {
 				css.setValue(err.message);
-			}
-		});
+			});
 	}
 
 	var dirty = ko.observable(false);

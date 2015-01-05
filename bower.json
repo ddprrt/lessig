@@ -15,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "less": "~1.7.4",
+    "less": "~2.2.0",
     "codemirror": "~4.4.0",
     "normalize-css": "~3.0.1",
     "codemirror-emmet": "~1.1.0",
